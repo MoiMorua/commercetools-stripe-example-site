@@ -66,6 +66,7 @@ if (existingWebhook) {
 
 /* ------ BUSINESS MODEL ------ */
 app.get("/settings", async (req, res) => {
+  console.log("test")
   const account = await stripe.accounts.retrieve(STRIPE_ADMIN);
   let icon = false;
   if (account.settings.branding.logo) {
@@ -118,7 +119,12 @@ app.get("/cart/:cartId?", async (req, res) => {
 
 /* ------ CREATE CART ------ */
 app.post("/cart", async (req, res) => {
-  res.send(await commerceTools.createCart());
+  
+  commerceTools.createCart()
+    .then(result => res.send(result))
+    .catch(err => {
+      console.log(`err ${err}`)
+      res.send(err)})
 });
 
 /* ------ ADD CART LINE ITEM ------ */

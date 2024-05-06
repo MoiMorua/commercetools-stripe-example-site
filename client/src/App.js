@@ -18,7 +18,7 @@ export default function App() {
 
   const addToCart = async (obj) => {
     if (!cart) {
-      fetch("/cart", {
+      fetch("http://127.0.0.1:8081/cart", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,8 @@ export default function App() {
         .then((data) => {
           setCart(data);
           updateCart(data.id, obj.id, null, 1);
-        });
+        })
+        .catch(e => console.log(e));
     } else {
       updateCart(
         cart.id,
@@ -40,7 +41,7 @@ export default function App() {
   };
 
   const updateCart = async (cartId, productId, variantId, version) => {
-    fetch("/cart/line-item", {
+    fetch("http://127.0.0.1:8081/cart/line-item", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

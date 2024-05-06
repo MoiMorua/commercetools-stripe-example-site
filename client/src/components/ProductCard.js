@@ -65,6 +65,7 @@ export default function ProductCard(props) {
   };
 
   const displayPrice = (value) => {
+    console.log({value})
     if (!value) {
       return `${getSymbolFromCurrency(props.currency)} 100`;
     }
