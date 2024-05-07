@@ -163,9 +163,9 @@ async function cartAddCustomer(cartId, customerId) {
         {
           action: "setShippingAddress",
           address: {
-            firstName: customer.addresses[0].firstName,
-            lastName: customer.addresses[0].lastName,
-            country: customer.addresses[0].country,
+            firstName: customer?.addresses[0]?.firstName,
+            lastName: customer?.addresses[0]?.lastName,
+            country: customer?.addresses[0]?.country,
           },
         },
       ],

@@ -48,7 +48,7 @@ export default function Customer(props) {
   };
 
   const checkCustomerExists = (e) => {
-    fetch("/customer/" + e.target.value)
+    fetch("http://127.0.0.1:8081/customer/" + e.target.value)
       .then((res) => res.json())
       .then((data) => {
         props.setCustId(data.id);
@@ -62,7 +62,7 @@ export default function Customer(props) {
   };
 
   const addCustomerToCart = async (customerId) => {
-    fetch("/cart/customer", {
+    fetch("http://127.0.0.1:8081/cart/customer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export default function Customer(props) {
   const createCustomer = async (e) => {
     e.preventDefault();
     setLoading(true);
-    fetch("/customer", {
+    fetch("http://127.0.0.1:8081/customer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

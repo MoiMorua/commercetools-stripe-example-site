@@ -26,7 +26,7 @@ export default function Confirmation(props) {
 
   useEffect(() => {
     if (id) {
-      fetch("/session/" + id)
+      fetch("http://127.0.0.1:8081/session/" + id)
         .then((res) => res.json())
         .then((obj) => {
           setPM(obj.receipt);

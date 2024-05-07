@@ -13,7 +13,7 @@ export default function CheckoutHosted(props) {
   const goCheckout = async (e) => {
     e.preventDefault();
     const stripe = await loadStripe(process.env.REACT_APP_PK);
-    const response = await fetch("/create-checkout-session", {
+    const response = await fetch("http://127.0.0.1:8081/create-checkout-session", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

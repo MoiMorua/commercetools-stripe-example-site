@@ -60,7 +60,7 @@ export default function CheckoutUPE(props) {
 
   // Create the PI when the customer ID is obtained
   useEffect(() => {
-    fetch("/create-payment-intent", {
+    fetch("http://127.0.0.1:8081/create-payment-intent", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -94,12 +94,15 @@ export default function CheckoutUPE(props) {
     }
   }, [clientSecret]);
 
+  useEffect(() => {
+    console.log({stripe})
+  },[stripe])
+  
   const submitPayment = async (e) => {
     e.preventDefault();
 
-
-
     // Code below to add the billing and shipping address info is a temporary fix for an issue with Afterpay
+    console.log({stripe})
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {

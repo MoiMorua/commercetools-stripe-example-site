@@ -102,12 +102,12 @@ app.get("/customer/:email?", async (req, res) => {
     });
   else {
     res.send({
-      id: customers.results[0].id,
-      name: `${customers.results[0].firstName} ${customers.results[0].lastName}`,
-      addressId: customers.results[0].addresses[0].id,
-      address: `${customers.results[0].addresses[0].streetName}`,
-      city: customers.results[0].addresses[0].city,
-      country: customers.results[0].addresses[0].country,
+      id: customers.results[0]?.id,
+      name: `${customers.results[0]?.firstName} ${customers.results[0]?.lastName}`,
+      addressId: customers.results[0]?.addresses[0]?.id,
+      address: `${customers.results[0]?.addresses[0]?.streetName}`,
+      city: customers.results[0]?.addresses[0]?.city,
+      country: customers.results[0]?.addresses[0]?.country,
     });
   }
 });
@@ -166,6 +166,7 @@ app.post("/customer", async (req, res) => {
     }
   };
   let stripeCustomer = await stripe.customers.create(payload);
+  console.log({stripeCustomer})
   payload.cartId = req.body.cartId;
   res.send(await commerceTools.createCustomer(payload, stripeCustomer.id));
 });
